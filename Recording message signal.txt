@@ -1,0 +1,25 @@
+% Set up recording parameters
+Fs = 44100;             % Sampling frequency (Hz)
+bitsPerSample = 16;     % Number of bits per sample
+numChannels = 1;        % Number of audio channels (mono)
+
+% Create an audio recorder object
+recorder = audiorecorder(Fs, bitsPerSample, numChannels);
+
+% Record audio for a specified duration
+duration = 5;           % Recording duration (seconds)
+disp('Start recording...');
+recordblocking(recorder, duration);
+disp('Recording complete.');
+
+% Get the recorded audio data
+audioData = getaudiodata(recorder);
+
+% Play back the recorded audio
+disp('Playing back recorded audio...');
+play(recorder);
+
+% Save the recorded audio to a file
+filename = 'recorded_audio10.wav';
+audiowrite(filename, audioData, Fs);
+disp(['Recorded audio saved to file: ', filename]);
